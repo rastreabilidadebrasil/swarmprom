@@ -11,6 +11,8 @@ volumes:
     alertmanager: {}
 
 configs:
+  statsd_config:
+    file: ./statsd-exporter/statsd_mapping.conf
   caddy_config:
     file: ./caddy/Caddyfile
   dockerd_config:
@@ -21,6 +23,21 @@ configs:
     file: ./prometheus/rules/swarm_task.rules.yml
 
 services:
+  statsd-exporter:
+    image: prom/statsd-exporter:v0.4.0
+    environment:
+      - LOGSPOUT=ignore
+    networks:
+      - net
+    ports:
+      - '9102:9102'
+      - '9125:9125'
+      - '9125:9125/udp'
+    configs:
+      - source: statsd_config
+        target: /etc/statsd_exporter/statsd_mapping.conf
+    entrypoint: /bin/statsd_exporter -statsd.mapping-config="/etc/statsd_exporter/statsd_mapping.conf"
+
   dockerd-exporter:
     image: stefanprodan/caddy
     networks:
