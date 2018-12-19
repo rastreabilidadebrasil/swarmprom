@@ -161,7 +161,7 @@ services:
     networks:
       - net
     environment:
-      - NODE_ID={{.Node.ID}}
+      - NODE_ID={{.Service.Name}}-{{.Task.Slot}}
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
