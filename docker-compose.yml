@@ -37,6 +37,18 @@ services:
       - source: statsd_config
         target: /etc/statsd_exporter/statsd_mapping.conf
     entrypoint: /bin/statsd_exporter -statsd.mapping-config="/etc/statsd_exporter/statsd_mapping.conf"
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+          - node.labels.type == stats
+      resources:
+        limits:
+          memory: 128M
+        reservations:
+          memory: 64M
 
   dockerd-exporter:
     image: stefanprodan/caddy
@@ -97,6 +109,7 @@ services:
       placement:
         constraints:
           - node.role == manager
+          - node.labels.type == stats
       resources:
         limits:
           memory: 128M
@@ -122,6 +135,7 @@ services:
       placement:
         constraints:
           - node.role == manager
+          - node.labels.type == stats
       resources:
         limits:
           memory: 128M
@@ -137,6 +151,10 @@ services:
     deploy:
       mode: replicated
       replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+          - node.labels.type == stats
 
   node-exporter:
     image: stefanprodan/swarmprom-node-exporter:v0.16.0
@@ -184,6 +202,7 @@ services:
       placement:
         constraints:
           - node.role == manager
+          - node.labels.type == stats
       resources:
         limits:
           memory: 2048M
@@ -211,6 +230,7 @@ services:
       placement:
         constraints:
           - node.role == manager
+          - node.labels.type == stats
       resources:
         limits:
           memory: 128M
