@@ -2,5 +2,5 @@ ADMIN_USER=admin \
 ADMIN_PASSWORD=admin \
 SLACK_URL=https://hooks.slack.com/services/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 \
 SLACK_CHANNEL="#alerta" \
-SLACK_USER=alertmanager \
+SLACK_USER=swarmpromRB \
 docker stack deploy -c docker-compose.yml mon
