@@ -1,0 +1,6 @@
+ADMIN_USER=admin \
+ADMIN_PASSWORD=admin \
+SLACK_URL=https://hooks.slack.com/services/xoxp-4218770543-5149857816-374331891494-4c02cc308ddd220e53edecfdc83c6f37 \
+SLACK_CHANNEL="#alerta" \
+SLACK_USER=alertmanager \
+docker stack deploy -c docker-compose.yml mon
