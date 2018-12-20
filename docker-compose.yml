@@ -23,6 +23,8 @@ configs:
     file: ./prometheus/rules/swarm_task.rules.yml
   prometheus_entrypoint:
     file: ./prometheus/conf/docker-entrypoint.sh
+  prometheus_config:
+    file: ./prometheus/conf/prometheus.yml
 
 services:
   statsd-exporter:
@@ -209,6 +211,8 @@ services:
         target: /etc/prometheus/swarm_task.rules.yml
       - source: prometheus_entrypoint
         target: /etc/prometheus/docker-entrypoint.sh
+      - source: prometheus_config
+        target: /etc/prometheus/prometheus.yml
     deploy:
       mode: replicated
       replicas: 1
