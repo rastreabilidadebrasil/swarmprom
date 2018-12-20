@@ -195,7 +195,7 @@ services:
     image: stefanprodan/swarmprom-prometheus:v2.5.0
     hostname: "{{.Service.Name}}-{{.Task.Slot}}"
     environment:
-      - JOBS=statsd-exporter:9102
+      - JOBS=statsd-exporter:9102 dockerd-exporter:9323 cadvisor:8080 node-exporter:9100
     networks:
       - net
     command:

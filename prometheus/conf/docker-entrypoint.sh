@@ -23,6 +23,11 @@ cat >>/tmp/prometheus.yml <<EOF
       - 'tasks.${SERVICE}'
       type: 'A'
       port: ${PORT}
+    relabel_configs:
+      - source_labels: [ __address__ ]
+        regex: ^(.*):\d+$
+        target_label: __address__
+        replacement: ${SERVICE}.$1
 EOF
 
 cat >>/tmp/weave-cortex.yml <<EOF
