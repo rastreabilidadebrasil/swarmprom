@@ -24,10 +24,8 @@ cat >>/tmp/prometheus.yml <<EOF
       type: 'A'
       port: ${PORT}
     relabel_configs:
-      - source_labels: [ __address__ ]
-        regex: ^(.*):\d+$
-        target_label: __address__
-        replacement: ${SERVICE}.$1
+      - source_labels: [ __meta_ec2_tag_Name ]
+        target_label: instance
 EOF
 
 cat >>/tmp/weave-cortex.yml <<EOF
