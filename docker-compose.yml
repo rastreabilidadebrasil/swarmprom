@@ -21,10 +21,6 @@ configs:
     file: ./prometheus/rules/swarm_node.rules.yml
   task_rules:
     file: ./prometheus/rules/swarm_task.rules.yml
-  prometheus_entrypoint:
-    file: ./prometheus/conf/docker-entrypoint.sh
-  prometheus_config:
-    file: ./prometheus/conf/prometheus.yml
 
 services:
   statsd-exporter:
@@ -195,7 +191,8 @@ services:
   prometheus:
     image: stefanprodan/swarmprom-prometheus:v2.5.0
     hostname: "{{.Service.Name}}-{{.Task.Slot}}"
-    entrypoint: /etc/prometheus/docker-entrypoint.sh
+    environment:
+      - JOBS=statsd-exporter:9102
     networks:
       - net
     command:
@@ -209,10 +206,6 @@ services:
         target: /etc/prometheus/swarm_node.rules.yml
       - source: task_rules
         target: /etc/prometheus/swarm_task.rules.yml
-      - source: prometheus_entrypoint
-        target: /etc/prometheus/docker-entrypoint.sh
-      - source: prometheus_config
-        target: /etc/prometheus/prometheus.yml
     deploy:
       mode: replicated
       replicas: 1
