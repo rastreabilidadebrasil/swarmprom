@@ -191,6 +191,7 @@ services:
   prometheus:
     image: stefanprodan/swarmprom-prometheus:v2.5.0
     hostname: "{{.Service.Name}}-{{.Task.Slot}}"
+    entrypoint: ./prometheus/conf/docker-entrypoint.sh
     networks:
       - net
     command:
