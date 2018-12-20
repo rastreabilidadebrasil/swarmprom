@@ -4,6 +4,8 @@ networks:
   net:
     driver: overlay
     attachable: true
+  application:
+    external: true
 
 volumes:
     prometheus: {}
