@@ -36,6 +36,9 @@ cat >>/tmp/weave-cortex.yml <<EOF
       - 'tasks.${SERVICE}'
       type: 'A'
       port: ${PORT}
+    relabel_configs:
+      - source_labels: [ __meta_ec2_tag_Name ]
+        target_label: instance
 EOF
 
 done
