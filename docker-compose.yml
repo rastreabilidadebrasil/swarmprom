@@ -124,7 +124,6 @@ services:
 
   alertmanager:
     image: stefanprodan/swarmprom-alertmanager:v0.14.0
-    hostname: "{{.Service.Name}}-{{.Task.Slot}}"
     networks:
       - net
     environment:
