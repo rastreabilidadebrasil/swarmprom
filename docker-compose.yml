@@ -149,6 +149,28 @@ services:
           memory: 128M
         reservations:
           memory: 64M
+    
+  docker-monitoring:
+    image: renatomachado/docker-monitoring:0.0.2
+    hostname: "{{.Service.Name}}-{{.Task.Slot}}"
+    networks:
+      - net
+    environment:
+      - SLACK_URL=${SLACK_URL:-https://hooks.slack.com/services/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 }
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+          - node.labels.type == stats
+      resources:
+        limits:
+          memory: 128M
+        reservations:
+          memory: 64M
 
   unsee:
     image: cloudflare/unsee:v0.8.0
