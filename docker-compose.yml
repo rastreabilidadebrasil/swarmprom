@@ -124,7 +124,7 @@ services:
 
   alertmanager:
     image: stefanprodan/swarmprom-alertmanager:v0.14.0
-    hostname: 'alertmanager.rastreabilidadebrasil.com.br'
+    hostname: '${STATS_HOST:-stats.rastreabilidadebrasil.com.br}'
     networks:
       - net
     environment:
