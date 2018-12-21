@@ -150,7 +150,7 @@ services:
           memory: 64M
     
   docker-monitoring:
-    image: renatomachado/docker-monitoring:0.0.3
+    image: renatomachado/docker-monitoring:0.0.4
     hostname: "{{.Service.Name}}-{{.Task.Slot}}"
     networks:
       - net
