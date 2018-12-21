@@ -156,6 +156,11 @@ services:
       - net
     environment:
       - SLACK_URL=${SLACK_URL:-https://hooks.slack.com/services/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 }
+      - ALERTMANAGER_HOST=${ALERTMANAGER_HOST:-http://alertmanager:9093}
+      - ALERTMANAGER_USER=${ALERTMANAGER_USER:-admin}
+      - ALERTMANAGER_PASS=${ALERTMANAGER_PASS:-admin}
+      - ALERTMANAGER_LABELS=${ALERTMANAGER_LABELS}
+      - AMBIENT=${AMBIENT:-production}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     deploy:

@@ -6,4 +6,6 @@ SLACK_URL=https://hooks.slack.com/services/T046ENNFZ/BEZEKF62J/Q4CW7yIppkXODO0zn
 SLACK_CHANNEL=alerta \
 SLACK_USER=swarmpromRB \
 STATS_HOST=test-stats.rastreabilidadebrasil.com.br \
+ALERTMANAGER_LABELS=node_disk_usage,node_cpu_usage
+AMBIENT=test
 docker stack deploy -c docker-compose.yml mon
