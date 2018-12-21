@@ -5,5 +5,5 @@ ADMIN_PASSWORD=admin \
 SLACK_URL=https://hooks.slack.com/services/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 \
 SLACK_CHANNEL=alerta \
 SLACK_USER=swarmpromRB \
-ALERTMANAGER_AMBIENT=test-stats.rastreabilidadebrasil.com.br \
+STATS_HOST=test-stats.rastreabilidadebrasil.com.br \
 docker stack deploy -c docker-compose.yml mon
