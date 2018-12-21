@@ -1,5 +1,8 @@
 route:
     receiver: 'slack'
+    routes:
+        - match:
+            alertname: InstanceDown
 
 receivers:
     - name: 'slack'
